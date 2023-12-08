@@ -18,7 +18,7 @@ jobs:
       - name: Convert Video
         run: |
           # Replace input_video.mp4 and output_video.mp4 with your actual file names
-          ffmpeg -i frames/%04d.png -c:v hevc_videotoolbox -allow_sw 1 -alpha_quality 1 -vtag hvc1 -r 1 output.mov
+          ffmpeg -i frames/%04d.png -c:v hevc_videotoolbox -allow_sw 1 -alpha_quality 1 -vtag hvc1 -r 30 output.mov
 
       - name: Upload Converted Video
         uses: actions/upload-artifact@v2
