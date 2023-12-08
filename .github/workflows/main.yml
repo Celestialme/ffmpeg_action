@@ -1,0 +1,29 @@
+name: FFmpeg Conversion
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  convert_video:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Repository
+         uses: actions/checkout@v3
+         uses: FedericoCarboni/setup-ffmpeg@v2
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Convert Video
+        run: |
+          # Replace input_video.mp4 and output_video.mp4 with your actual file names
+          ffmpeg -i -c:v libvpx snow.webm  -c:v hevc_videotoolbox -allow_sw 1 -alpha_quality 0.75 -vtag hvc1 output.mov
+
+      - name: Upload Converted Video
+        uses: actions/upload-artifact@v2
+        with:
+          name: converted-video
+          path: output.mov
