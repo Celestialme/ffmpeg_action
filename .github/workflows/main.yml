@@ -18,7 +18,7 @@ jobs:
       - name: Convert Video
         run: |
           # Replace input_video.mp4 and output_video.mp4 with your actual file names
-          ffmpeg -c:v libvpx -i  snow.webm  -c:v hevc_videotoolbox -allow_sw 1 -alpha_quality 0.75 -vtag hvc1 -pix_fmt bgra output.mov
+          ffmpeg -c:v libvpx -i  snow.webm  -c:v hevc_videotoolbox -allow_sw 1 -alpha_quality 0.75 -vtag hvc1 -pix_fmt yuva420p10le  output.mov
 
       - name: Upload Converted Video
         uses: actions/upload-artifact@v2
