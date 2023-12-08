@@ -18,7 +18,7 @@ jobs:
       - name: Convert Video
         run: |
           # Replace input_video.mp4 and output_video.mp4 with your actual file names
-          ffmpeg -c:v libvpx-vp9 -i snow.webm -c:v prores -pix_fmt yuva444p10le ouput.mov
+          ffmpeg -c:v libvpx -i snow.webm -c:v prores -pix_fmt yuva444p10le ouput.mov
 
       - name: Upload Converted Video
         uses: actions/upload-artifact@v2
