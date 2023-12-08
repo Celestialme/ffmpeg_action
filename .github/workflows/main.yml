@@ -19,7 +19,7 @@ jobs:
         run: |
           # Replace input_video.mp4 and output_video.mp4 with your actual file names
           #ffmpeg -c:v libvpx -i  snow.webm  -c:v hevc_videotoolbox  -alpha_quality 0.75 -vtag hvc1 output.mov
-          ffmpeg -h encoder=prores_videotoolbox
+
           ffmpeg -h encoder=hevc_videotoolbox
 
       - name: Upload Converted Video
