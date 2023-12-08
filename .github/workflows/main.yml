@@ -13,15 +13,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install FFmpeg
-        run: |
-          brew install x265
-          brew install ffmpeg
+        uses: FedericoCarboni/setup-ffmpeg@v2
 
       - name: Convert Video
         run: |
           # Replace input_video.mp4 and output_video.mp4 with your actual file names
           ffmpeg -h encoder=hevc_videotoolbox
-          ffmpeg -i frames/%04d.png -c:v hevc_videotoolbox -allow_sw 1 -alpha_quality 1 -vtag hvc1 -r 30 -pix_fmt yuva420p output.mov
+          ffmpeg -i frames/%04d.png -c:v hevc_videotoolbox -allow_sw 1 -alpha_quality 1 -vtag hvc1 -r 30 -vf premultiply=inplace=1 output.mov
 
       - name: Upload Converted Video
         uses: actions/upload-artifact@v2
